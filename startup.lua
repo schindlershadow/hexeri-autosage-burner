@@ -2,6 +2,16 @@ local auto = peripheral.wrap("left")
 local foundFuelSlot = nil
 local flintAndSteelSlot = nil
 
+if auto == nil or peripheral.getType("left") ~= "weak_automata" then
+    if peripheral.getType("right") == "weak_automata" then
+        auto = peripheral.wrap("right")
+    else
+        print("weak_automata not found. Please place a weak_automata in one of the turtle slots")
+        sleep(5)
+        return
+    end
+end
+
 local function checkInventory()
     foundFuelSlot = nil
     flintAndSteelSlot = nil
